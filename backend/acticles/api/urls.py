@@ -1,9 +1,17 @@
-from django.urls import path
+from rest_framework.routers import DefaultRouter
 
-from .views import ArticleListApi, ArticleDetailApi
+from acticles.api import views as api_views
 
-urlpatterns = [
+router = DefaultRouter()
+router.register(r'', api_views.ArticleViewSet, basename='articles')
+urlpatterns = router.urls
 
-    path('', ArticleListApi.as_view()),
-    path('<pk>', ArticleDetailApi.as_view()),
-]
+# urlpatterns = [
+#
+#     path('', api_views.ArticleListApi.as_view()),
+#     path('<pk>', api_views.ArticleDetailApi.as_view()),
+#     path('create/', api_views.ArticleCreateApi.as_view()),
+#     path('update/<pk>/', api_views.ArticleUpdateApi.as_view()),
+#     path('delete/<pk>/', api_views.ArticleDeleteApi.as_view()),
+#
+# ]
